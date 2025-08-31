@@ -1,6 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
+import { Ubuntu } from "next/font/google";
+
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 
 const FAQ = () => {
   const [openQuestion, setOpenQuestion] = useState(null);
@@ -17,13 +23,6 @@ const FAQ = () => {
       gasoekLink.href = 'https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap';
       gasoekLink.rel = 'stylesheet';
       document.head.appendChild(gasoekLink);
-    }
-
-    if (!document.querySelector('link[href*="Ubuntu"]')) {
-      const ubuntuLink = document.createElement('link');
-      ubuntuLink.href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap';
-      ubuntuLink.rel = 'stylesheet';
-      document.head.appendChild(ubuntuLink);
     }
   }, []);
 
@@ -120,17 +119,17 @@ const FAQ = () => {
           </div>
 
           {/* FAQ List */}
-          <div className="border-2 border-purple-200 rounded-2xl shadow-2xl p-8">
+          <div className={`border-2 ${ubuntu.className} border-purple-200 rounded-2xl shadow-2xl p-8`}>
             {faqData.map((faq) => (
               <div key={faq.id} className="faq-item">
                 <button
                   onClick={() => toggleQuestion(faq.id)}
                   className="w-full py-6 flex justify-between items-start text-left focus:outline-none group"
                 >
-                  <h3 className="text-xl font-semibold text-white pr-8 group-hover:text-purple-100 transition-colors">
+                  <h3 className="text-xl cursor-pointer font-semibold text-white pr-8 group-hover:text-purple-100 transition-colors">
                     {faq.question}
                   </h3>
-                  <div className={`chevron flex-shrink-0 ${openQuestion === faq.id ? 'rotate' : ''}`}>
+                  <div className={`chevron cursor-pointer flex-shrink-0 ${openQuestion === faq.id ? 'rotate' : ''}`}>
                     <svg 
                       className="w-6 h-6 text-purple-400" 
                       fill="none" 
@@ -161,7 +160,7 @@ const FAQ = () => {
             <p className="text-purple-200 text-lg mb-4">
               Still have questions?
             </p>
-            <button className="bg-[#a594f9] hover:bg-[rgb(147,129,236)] text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105"
+            <button className="bg-[#a594f9] hover:bg-[rgb(147,129,236)] text-white cursor-pointer font-semibold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-102"
             onClick={(goToContact)}>
               Contact Us
             </button>

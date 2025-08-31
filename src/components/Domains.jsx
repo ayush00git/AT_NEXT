@@ -1,5 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { Ubuntu } from "next/font/google";
+
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
+
 
 const OurDomains = () => {
   const [selectedDomain, setSelectedDomain] = useState(null);
@@ -11,13 +18,6 @@ const OurDomains = () => {
       gasoekLink.href = 'https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap';
       gasoekLink.rel = 'stylesheet';
       document.head.appendChild(gasoekLink);
-    }
-
-    if (!document.querySelector('link[href*="Ubuntu"]')) {
-      const ubuntuLink = document.createElement('link');
-      ubuntuLink.href = 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap';
-      ubuntuLink.rel = 'stylesheet';
-      document.head.appendChild(ubuntuLink);
     }
   }, []);
 
@@ -128,7 +128,7 @@ const OurDomains = () => {
         }
       `}</style>
 
-      <div className="w-full min-h-screen bg-[#140b29] overflow-x-hidden relative">
+      <div className={`${ubuntu.className} w-full min-h-screen bg-[#140b29] overflow-x-hidden relative`}>
         {/* Header Section with Clip Path */}
         <section className="bg-[#140b29] clip-path-polygon pb-20 pt-20 px-8">
           <div className="text-center mb-16">

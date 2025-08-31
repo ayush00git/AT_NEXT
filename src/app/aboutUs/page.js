@@ -1,5 +1,11 @@
 "use client";
 import React, { useEffect } from 'react';
+import { Ubuntu } from "next/font/google";
+
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 
 const AboutUs = () => {
   useEffect(() => {
@@ -38,7 +44,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="bg-[#140b29] text-white font-sans leading-relaxed select-none min-h-screen">
+    <div className={`${ubuntu.className} bg-[#140b29] text-white font-sans leading-relaxed select-none min-h-screen`}>
       <div className="max-w-6xl mx-auto px-5">
         {/* Header */}
         <div className="text-center py-20 pb-16">

@@ -1,6 +1,12 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from "next/navigation";
+import { Ubuntu } from "next/font/google";
+
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 
 const OurTeam = () => {
   const [members, setMembers] = useState([]);
@@ -16,7 +22,7 @@ const OurTeam = () => {
     // Fetch members from API
     const fetchMembers = async () => {
       try {
-        const response = await fetch(`/api/members`);
+        const response = await fetch(`/api/member`);
         if (!response.ok) {
           throw new Error('Failed to fetch members');
         }
@@ -201,7 +207,7 @@ const OurTeam = () => {
   let globalIndex = 0;
 
   return (
-    <div className="font-sans text-white select-none min-h-screen" style={{ backgroundColor: '#140b29' }}>
+    <div className={`${ubuntu.className} font-sans text-white select-none min-h-screen`} style={{ backgroundColor: '#140b29' }}>
       <div className="max-w-6xl mx-auto px-5">
         {/* Hero Section */}
         <section className="hero-section text-center py-20 pb-16 opacity-0 translate-y-12 animate-[fadeInUp_1s_ease-out_forwards]">

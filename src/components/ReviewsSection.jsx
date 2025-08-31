@@ -9,7 +9,7 @@ const ReviewsSection = () => {
   const fetchReviews = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:8000/contactUs');
+      const response = await fetch(`/api/contactUs`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch reviews');

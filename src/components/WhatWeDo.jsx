@@ -1,6 +1,11 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import { Ubuntu } from "next/font/google";
 
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 const WhatWeDo = () => {
   const [activeSection, setActiveSection] = useState(0);
   
@@ -120,7 +125,7 @@ const WhatWeDo = () => {
             {sectionsData.current.map((section, index) => (
               <div 
                 key={section.id}
-                className={`content-section min-h-[80vh] px-8 lg:px-16 py-16 flex flex-col justify-center transition-all duration-500 ${
+                className={`${ubuntu.className} content-section min-h-[80vh] px-8 lg:px-16 py-16 flex flex-col justify-center transition-all duration-500 ${
                   index === activeSection ? 'opacity-100 transform-none' : 'opacity-30 translate-y-5'
                 }`}
               >

@@ -24,7 +24,7 @@ export default function AnnouncementForm() {
     if (messageTimeoutRef.current) clearTimeout(messageTimeoutRef.current);
 
     try {
-      const response = await fetch(`http://localhost:8000/announcements/admin_only/${import.meta.env.VITE_ROUTE_SECRET}`, {
+      const response = await fetch(`/api/announcements/secretRoute`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

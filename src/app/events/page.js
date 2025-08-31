@@ -1,6 +1,11 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
+import { Ubuntu } from "next/font/google";
 
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 const Events = () => {
   const observerRef = useRef(null);
 
@@ -66,7 +71,7 @@ const Events = () => {
   ];
 
   return (
-    <div className="font-sans leading-relaxed text-white select-none min-h-screen" style={{ backgroundColor: '#140b29' }}>
+    <div className={`${ubuntu.className} font-sans leading-relaxed text-white select-none min-h-screen`} style={{ backgroundColor: '#140b29' }}>
       <div className="max-w-6xl mx-auto px-8 py-8 relative">
         <h1 className="main-title fade-in text-6xl font-bold text-center my-8 mb-16 uppercase tracking-widest">
           EVENTS

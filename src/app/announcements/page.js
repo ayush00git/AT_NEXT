@@ -1,15 +1,24 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Ubuntu } from "next/font/google";
+
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 const AnnouncementsSection = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const router = useRouter();
+  const goToAdmin = () => {
+    router.push("/announcements/admin_only");
+  };
   const fetchAnnouncements = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:8000/announcements');
+      const response = await fetch(`/api/announcements`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch announcements');
@@ -70,7 +79,7 @@ const AnnouncementsSection = () => {
 
   if (loading) {
     return (
-      <div className="font-sans min-h-screen p-5 select-none bg-[#140b29]">
+      <div className={`${ubuntu.className} font-sans min-h-screen p-5 select-none bg-[#140b29]`}>
         <div className="max-w-4xl mx-auto">
           <h1 className="text-center text-white text-3xl font-semibold mb-10 text-shadow">
             Latest Announcements

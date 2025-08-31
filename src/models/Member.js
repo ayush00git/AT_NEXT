@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const memberSchema = new mongoose.Schema(
+const memberSchema = new Schema(
   {
     name: {
       type: String,
@@ -40,4 +40,6 @@ const memberSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Member || mongoose.model("Member", memberSchema);
+const Member = mongoose.models.Member || mongoose.model("Member", memberSchema);
+
+export default Member;

@@ -1,7 +1,13 @@
 "use client";
-import ReviewsSection from "@/components/ReviewSection";
-import { useState, useEffect, useRef } from "react";
 
+import ReviewsSection from "@/components/ReviewsSection";
+import { useState, useEffect, useRef } from "react";
+import { Ubuntu } from "next/font/google";
+
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -21,7 +27,7 @@ export default function ContactForm() {
 
   const fetchContacts = async () => {
     try {
-      const response = await fetch("http://localhost:8000/contactUs");
+      const response = await fetch(`/api/contactUs`);
       const data = await response.json();
       if (data.success) {
         setContacts(data.contacts);
@@ -43,7 +49,7 @@ export default function ContactForm() {
     if (messageTimeoutRef.current) clearTimeout(messageTimeoutRef.current);
 
     try {
-      const response = await fetch("http://localhost:8000/contactUs", {
+      const response = await fetch(`/api/contactUs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +83,7 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#14b29] font-sans text-white p-5 select-none">
+    <div className={`${ubuntu.className} min-h-screen bg-[#140b29] font-sans text-white p-5 select-none`}>
       {/* Contact Form Section */}
       <div className="max-w-lg mx-auto p-10 rounded-3xl shadow-2xl border-2 backdrop-blur-2xl border-white/15">
         <h1 className="text-3xl text-center mb-8 font-normal text-white">
@@ -156,52 +162,12 @@ export default function ContactForm() {
             type="button"
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="w-full py-4 bg-[#231446] border-2 rounded-xl text-white text-base font-semibold uppercase tracking-wide mt-3 cursor-pointer transition-all duration-300 border-[#a594f9]
-hover:bg-[#9d8bfa] disabled:opacity-60 disabled:cursor-not-allowed"
-          >
+            className="w-full py-4 bg-[#231446] border-2 rounded-xl text-white text-base font-semibold uppercase tracking-wide mt-3 cursor-pointer transition-all duration-300 border-[#a594f9] hover:bg-[#9d8bfa] disabled:opacity-60 disabled:cursor-not-allowed">
             {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </div>
       </div>
 
-      {/* Recent Queries Section */}
-      {/* <div className="max-w-6xl mx-auto mt-10">
-        <h1 className="text-4xl font-semibold text-center mb-10 text-white" 
-            style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>
-          Recent Queries
-        </h1>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {contacts.map((contact, index) => (
-            <div
-              key={index}
-              className="relative rounded-xl p-6 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden group border"
-              style={{
-                background: 'linear-gradient(135deg, #1e1538 0%, #2a1f4a 100%)',
-                borderColor: '#3d2f5f',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
-              }}
-            >              
-              <div className="mb-4">
-                <h3 className="text-xl font-semibold mb-0" style={{color: '#e0e7ff'}}>
-                  {contact.name}
-                </h3>
-              </div>
-              
-              <div className="text-sm leading-relaxed break-words" 
-                   style={{color: '#c1c9e8', fontSize: '0.95rem', lineHeight: '1.6'}}>
-                {contact.query}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {contacts.length === 0 && (
-          <div className="text-center text-white/60 py-12">
-            <p className="text-lg">No recent queries to display</p>
-          </div>
-        )}
-      </div> */}
       <ReviewsSection />
 
       <style jsx>{`

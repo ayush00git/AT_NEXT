@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import sharp from "sharp";
 import cloudinary from "cloudinary";
-import Member from "@/models/member";
+import Member from "@/models/Member";
 import dbConnect from "@/lib/dbConnect";
 
 cloudinary.v2.config({

@@ -1,5 +1,11 @@
 "use client";
 import React from 'react';
+import { Ubuntu } from "next/font/google";
+
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 
 const Footer = () => {
   return (
@@ -78,7 +84,7 @@ const Footer = () => {
         }
       `}</style>
 
-      <footer className="footer-bg-gradient relative overflow-hidden mt-16">
+      <footer className={`${ubuntu.className} footer-bg-gradient relative overflow-hidden`}>
         
         <div className="max-w-6xl mx-auto px-5 pt-16 relative z-20 md:pt-20">
           {/* Footer Top Section */}
